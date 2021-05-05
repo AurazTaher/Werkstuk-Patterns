@@ -1,10 +1,12 @@
 package domain;
 
 
+import domain.observer.Observer;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Person {
+public class Person implements Observer {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
@@ -53,4 +55,12 @@ public class Person {
         return Objects.hash(firstName, lastName, birthDate);
     }
 
+    @Override
+    public void update(Object value) { // value should be an order
+        Order order = (Order)value;
+        if (order.getOrderer().equals(this)) {
+            double prijs = order.getTotalPrice();
+            System.out.println("The order of " + this.firstName + " " + this.lastName + " is ready for pickup and the total price is €" + prijs);
+        }
+    }
 }
