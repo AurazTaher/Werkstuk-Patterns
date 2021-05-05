@@ -2,6 +2,7 @@ package ui;
 
 import domain.Order;
 import domain.Person;
+import domain.Pizzeria;
 import domain.Product;
 import domain.strategy.DiscountOverLimit;
 
@@ -14,6 +15,11 @@ public class Test {
         Order order = new Order(person);
         order.setDiscountStrategy(new DiscountOverLimit(7,.5));
         order.addProduct(product);
+
+        Pizzeria pizzeria = new Pizzeria();
+        pizzeria.addObserver(person);
+        pizzeria.addOrder(order);
+        pizzeria.handleNextOrder();
 
         System.out.println(order.getTotalPrice());
     }
