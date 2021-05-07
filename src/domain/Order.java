@@ -1,5 +1,6 @@
 package domain;
 
+import domain.decorator.Product;
 import domain.strategy.DiscountStrategy;
 
 import java.util.ArrayList;
