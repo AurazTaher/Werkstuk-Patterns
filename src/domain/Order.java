@@ -3,6 +3,7 @@ package domain;
 import domain.decorator.Product;
 import domain.strategy.DiscountStrategy;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class Order {
     private double totalPrice;
     private DiscountStrategy discountStrategy;
     private Person orderer;
+    private LocalDateTime recievedOrderTime;
 
     public Order(Person person){
         this.products = new ArrayList<>();
@@ -42,6 +44,18 @@ public class Order {
         return totalPrice - discount;
     }
 
+
+
+    public double getTotalPrepTime(){
+        double totalPrepTime = 0.0;
+
+        for (Product product: products) {
+        totalPrepTime += product.getPrepTime();
+        }
+
+        return totalPrepTime;
+    }
+
     public DiscountStrategy getDiscountStrategy() {
         return discountStrategy;
     }
@@ -52,5 +66,14 @@ public class Order {
 
     public Person getOrderer() {
         return orderer;
+    }
+
+
+    public LocalDateTime getRecievedOrderTime() {
+        return recievedOrderTime;
+    }
+
+    public void setRecievedOrderTime(LocalDateTime recievedOrderTime) {
+        this.recievedOrderTime = recievedOrderTime;
     }
 }

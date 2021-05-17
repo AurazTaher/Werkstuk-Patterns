@@ -4,28 +4,34 @@ package domain;
 
 import domain.observer.Observer;
 import domain.observer.Subject;
+import domain.strategy.OrderOptimizerStrategy;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
 public class Pizzeria implements Subject {
-    private Queue<Order> orderQueue;
+    private List<Order> orders;
     private List<Observer> observers;
+    private int amountOfPizza;
+    private OrderOptimizerStrategy orderOptimizerStrategy;
 
     public Pizzeria(){
-        this.orderQueue = new LinkedList<>();
+        this.orders = new ArrayList<>();
         this.observers = new ArrayList<>();
+        this.amountOfPizza = 200;
     }
 
     public boolean addOrder(Order order){
-        return this.orderQueue.add(order);
+        order.setRecievedOrderTime(LocalDateTime.now());
+        return this.orders.add(order);
     }
 
     public void handleNextOrder(){
-        if (orderQueue.size() > 0){
-            Order nextOrder = orderQueue.element();
+        if (orders.size() > 0){
+            Order nextOrder = this.orderOptimizerStrategy.getNextOrder(orders);
             this.notifyObservers(nextOrder);
         }
     }
@@ -51,5 +57,21 @@ public class Pizzeria implements Subject {
         for (Observer observer: this.observers) {
             observer.update(value);
         }
+    }
+
+    public int getAmountOfPizza() {
+        return amountOfPizza;
+    }
+
+    public void setAmountOfPizza(int amountOfPizza) {
+        this.amountOfPizza = amountOfPizza;
+    }
+
+    public OrderOptimizerStrategy getOrderOptimizerStrategy() {
+        return orderOptimizerStrategy;
+    }
+
+    public void setOrderOptimizerStrategy(OrderOptimizerStrategy orderOptimizerStrategy) {
+        this.orderOptimizerStrategy = orderOptimizerStrategy;
     }
 }

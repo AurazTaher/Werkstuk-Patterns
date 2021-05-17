@@ -14,4 +14,9 @@ public class ToppingSalami extends ToppingDecorator {
     public double getPrice() {
         return super.product.getPrice() + 1.00;
     }
+
+    @Override
+    public double getPrepTime() {
+        return super.product.getPrepTime() + 2;
+    }
 }
