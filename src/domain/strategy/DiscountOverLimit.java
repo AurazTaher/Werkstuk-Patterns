@@ -1,7 +1,7 @@
 package domain.strategy;
 
 import domain.Order;
-import domain.Product;
+import domain.decorator.Product;
 
 
 public class DiscountOverLimit extends Discount implements DiscountStrategy {
