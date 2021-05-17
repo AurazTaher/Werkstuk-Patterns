@@ -12,4 +12,9 @@ public class PlainPizza implements Product {
     public double getPrice() {
         return 5.00;
     }
+
+    @Override
+    public double getPrepTime() {
+        return 7.5;
+    }
 }

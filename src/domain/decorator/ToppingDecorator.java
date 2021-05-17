@@ -16,4 +16,9 @@ public abstract class ToppingDecorator implements Product {
     public double getPrice() {
         return this.product.getPrice();
     }
+
+    @Override
+    public double getPrepTime() {
+        return this.product.getPrepTime();
+    }
 }

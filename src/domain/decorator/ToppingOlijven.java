@@ -14,4 +14,9 @@ public class ToppingOlijven extends ToppingDecorator {
     public double getPrice() {
         return super.product.getPrice() + 0.50;
     }
+
+    @Override
+    public double getPrepTime() {
+        return super.product.getPrepTime() + 0.5;
+    }
 }
