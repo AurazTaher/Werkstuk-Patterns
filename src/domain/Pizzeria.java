@@ -74,4 +74,12 @@ public class Pizzeria implements Subject {
     public void setOrderOptimizerStrategy(OrderOptimizerStrategy orderOptimizerStrategy) {
         this.orderOptimizerStrategy = orderOptimizerStrategy;
     }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public List<Observer> getObservers() {
+        return observers;
+    }
 }
